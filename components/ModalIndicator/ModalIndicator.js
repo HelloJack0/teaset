@@ -15,13 +15,13 @@ export default class ModalIndicator extends Overlay {
 
   static IndicatorView = ModalIndicatorView;
 
-  static show(text) {
+  static show(text, cancelShow) {
     if (miOverlay) {
       miOverlay.text = text;
       return;
     }
     miKey = super.show(
-      <this.IndicatorView text={text} ref={v => miOverlay = v} />
+      <this.IndicatorView text={text} ref={v => miOverlay = v} cancelShow={cancelShow?cancelShow:null} />
     );
   }
 
