@@ -64,7 +64,7 @@ export default class ModalIndicatorView extends Overlay.View {
           {
             cancelShow && <TouchableOpacity style={{width:20,height:20,position:'absolute',top:5,right:5}}
                             onPress={ cancelShow } >
-              <Image style={{width:20,height:20,tintColor:Theme.toastIconTintColor}} source={require('../../icons/fail.png')}
+              <Image style={{width:20,height:20,tintColor:Theme.toastIconTintColor}} source={require('../../icons/fail.png')} />
             </TouchableOpacity>
           }
           <ActivityIndicator size={size} color={color || Theme.miIndicatorColor} />
