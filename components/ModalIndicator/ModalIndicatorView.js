@@ -67,7 +67,7 @@ export default class ModalIndicatorView extends Overlay.View {
               <Image style={{width:20,height:20,tintColor:Theme.toastIconTintColor}} source={require('../../icons/fail.png')} />
             </TouchableOpacity>
           }
-          <ActivityIndicator size={size} color={color || Theme.miIndicatorColor} />
+          <ActivityIndicator style={{marginTop:25}} size={size} color={color || Theme.miIndicatorColor} />
         </View>
         {React.isValidElement(text) ? text :
           <Text style={{color: Theme.miTextColor, fontSize: Theme.miFontSize, paddingTop: Theme.miTextPaddingTop}}>
