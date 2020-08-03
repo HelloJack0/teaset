@@ -45,6 +45,7 @@ export default class SegmentedView extends Component {
     this.state = {
       activeIndex: this.props.activeIndex ? this.props.activeIndex : 0,
     };
+    this.segmentedBar = null;
   }
 
   componentDidUpdate(prevProps) {
@@ -84,6 +85,10 @@ export default class SegmentedView extends Component {
       if (this.refs.carousel) {
         this.refs.carousel.scrollToPage(index, false);
       }
+      
+      if (this.segmentedBar) {
+          this.segmentedBar.activeIndex = index;
+      }
       this.props.onChange && this.props.onChange(index);
     });
   }
@@ -105,6 +110,7 @@ export default class SegmentedView extends Component {
     return (
       <View>
         <SegmentedBar
+          ref={segmentedBar => (this.segmentedBar = segmentedBar)}
           style={barStyle}
           justifyItem={justifyItem}
           indicatorType={indicatorType}
