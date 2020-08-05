@@ -64,6 +64,12 @@ export default class SegmentedBar extends Component {
     }
     this.updateIndicator();
   }
+    
+  componentWillReceiveProps(nextProps) {
+        if (nextProps.activeIndex != this._activeIndex) {
+            this._activeIndex = nextProps.activeIndex;
+        }
+    }
 
   get activeIndex() {
     return this._activeIndex;
