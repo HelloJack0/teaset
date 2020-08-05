@@ -45,7 +45,6 @@ export default class SegmentedView extends Component {
     this.state = {
       activeIndex: this.props.activeIndex ? this.props.activeIndex : 0,
     };
-    this.segmentedBar = null;
   }
 
   componentDidUpdate(prevProps) {
@@ -53,6 +52,12 @@ export default class SegmentedView extends Component {
       this.refs.carousel.scrollToPage(this.props.activeIndex);
     }
   }
+   
+  componentWillReceiveProps(nextProps) {
+        if (nextProps.activeIndex != this.props.activeIndex) {
+            this.state.activeIndex = nextProps.activeIndex;
+        }
+    }
 
   get sheets() {
     let {children} = this.props;
@@ -80,14 +85,10 @@ export default class SegmentedView extends Component {
   }
 
   onSegmentedBarChange(index) {
-    if (index == this.activeIndex) return;
+    if (index == this.state.activeIndex) return;
     this.setState({activeIndex: index}, () => {
       if (this.refs.carousel) {
         this.refs.carousel.scrollToPage(index, false);
-      }
-      
-      if (this.segmentedBar) {
-          this.segmentedBar.activeIndex = index;
       }
       this.props.onChange && this.props.onChange(index);
     });
@@ -110,7 +111,6 @@ export default class SegmentedView extends Component {
     return (
       <View>
         <SegmentedBar
-          ref={segmentedBar => (this.segmentedBar = segmentedBar)}
           style={barStyle}
           justifyItem={justifyItem}
           indicatorType={indicatorType}
@@ -120,7 +120,7 @@ export default class SegmentedView extends Component {
           indicatorPositionPadding={indicatorPositionPadding}
           animated={animated}
           autoScroll={autoScroll}
-          activeIndex={this.activeIndex}
+          activeIndex={this.state.activeIndex}
           onChange={index => this.onSegmentedBarChange(index)}
         >
           {this.sheets.map((item, index) => (
@@ -139,7 +139,7 @@ export default class SegmentedView extends Component {
 
   renderProjector() {
     return (
-      <Projector style={{flex: 1}} index={this.activeIndex}>
+      <Projector style={{flex: 1}} index={this.state.activeIndex}>
         {this.sheets}
       </Projector>
     );
@@ -150,7 +150,7 @@ export default class SegmentedView extends Component {
       <Carousel
         style={{flex: 1}}
         carousel={false}
-        startIndex={this.activeIndex}
+        startIndex={this.state.activeIndex}
         cycle={false}
         ref='carousel'
         onChange={index => this.onCarouselChange(index)}
