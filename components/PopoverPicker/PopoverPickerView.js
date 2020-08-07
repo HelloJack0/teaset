@@ -4,7 +4,7 @@
 
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, FlatList} from 'react-native';
 
 import Theme from 'teaset/themes/Theme';
 import Overlay from '../Overlay/Overlay';
@@ -63,18 +63,26 @@ export default class PopoverPickerView extends Overlay.PopoverView {
   }
 
   renderContent() {
-    let {items, selectedIndex, getItemText} = this.props;
+    let {items, selectedIndex, getItemText, fromBounds,isPopViewWidthSameAsSelectView} = this.props;
     return super.renderContent(
-      <ScrollView>
-        {items && items.map((item, index) => (
-          <this.constructor.Item
-            key={'item' + index}
-            title={getItemText ? getItemText(item, index) : item}
-            selected={index === selectedIndex}
-            onPress={() => this.onItemPress(index)}
-            />
-        ))}
-      </ScrollView>
+       <FlatList
+            showsVerticalScrollIndicator = {false}
+            style={{marginVertical: 3,width:isPopViewWidthSameAsSelectView?fromBounds.width:'auto'}}
+            ItemSeparatorComponent={()=><View style={{
+                height: Theme.poppItemSeparatorWidth,
+                backgroundColor: Theme.poppItemSeparatorColor,
+            }}/>}
+            data={items}
+            keyExtractor={(item, index) => "item" + index}
+            renderItem={({item, index}) =>
+                <this.constructor.Item
+                    title={getItemText ? getItemText(item, index) : item}
+                    selected={index === selectedIndex}
+                    onPress={() => this.onItemPress(index)}
+                />
+            }
+        />
+
     );
   }
 
