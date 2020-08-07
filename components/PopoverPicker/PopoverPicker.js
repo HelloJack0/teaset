@@ -14,7 +14,7 @@ export default class PopoverPicker extends Overlay {
 
   // fromBounds shape: x, y, width, height
   // items: array of string
-  static show(fromBounds, items, selectedIndex, onSelected, options = {}) {
+  static show(fromBounds, items, selectedIndex, onSelected, isPopViewWidthSameAsSelectView, options = {}) {
     return super.show(
       <this.PopoverPickerView
         fromBounds={fromBounds}
