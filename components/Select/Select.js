@@ -151,7 +151,7 @@ export default class Select extends Component {
         items,
         this.selectedIndex,
         onSelected,
-        isPopViewWidthSameAsSelectView
+        isPopViewWidthSameAsSelectView,
         {getItemText, align: 'end'}
       );
     });
