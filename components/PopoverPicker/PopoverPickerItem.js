@@ -2,13 +2,13 @@
 
 'use strict';
 
-import React, {Component} from "react";
+import React, {Component,PureComponent} from "react";
 import PropTypes from 'prop-types';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 
 import Theme from 'teaset/themes/Theme';
 
-export default class PopoverPickerItem extends Component {
+export default class PopoverPickerItem extends PureComponent {
 
   static propTypes = {
     ...TouchableOpacity.propTypes,
@@ -24,8 +24,6 @@ export default class PopoverPickerItem extends Component {
       paddingRight: Theme.poppItemPaddingRight,
       paddingTop: Theme.poppItemPaddingTop,
       paddingBottom: Theme.poppItemPaddingBottom,      
-      borderColor: Theme.poppItemSeparatorColor,
-      borderBottomWidth: Theme.poppItemSeparatorWidth,
       flexDirection: 'row',
       alignItems: 'center',
     }].concat(style);
