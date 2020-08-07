@@ -28,6 +28,7 @@ export default class Select extends Component {
     placeholder: PropTypes.string,
     placeholderTextColor: PropTypes.string,
     onSelected: PropTypes.func, //(item, index)
+    isPopViewWidthSameAsSelectView:PropTypes.bool
   };
 
   static defaultProps = {
@@ -36,6 +37,7 @@ export default class Select extends Component {
     editable: true,
     icon: 'default',
     pickerType: 'auto',
+    isPopViewWidthSameAsSelectView:true
   };
 
   measureInWindow(callback) {
@@ -143,12 +145,13 @@ export default class Select extends Component {
 
   showPopoverPicker() {
     this.measure((x, y, width, height, pageX, pageY) => {
-      let {items, getItemText, onSelected} = this.props;
+      let {items, getItemText, onSelected, isPopViewWidthSameAsSelectView} = this.props;
       PopoverPicker.show(
         {x: pageX, y: pageY, width, height},
         items,
         this.selectedIndex,
         onSelected,
+        isPopViewWidthSameAsSelectView
         {getItemText, align: 'end'}
       );
     });
