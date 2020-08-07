@@ -21,6 +21,7 @@ export default class PopoverPicker extends Overlay {
         items={items}
         selectedIndex={selectedIndex}
         onSelected={onSelected}
+        isPopViewWidthSameAsSelectView={isPopViewWidthSameAsSelectView}
         {...options}
         />
     );
