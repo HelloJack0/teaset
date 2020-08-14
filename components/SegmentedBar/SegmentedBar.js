@@ -80,7 +80,7 @@ export default class SegmentedBar extends Component {
       this._activeIndex = value;
       this.updateIndicator();
       this.forceUpdate();
-      this.props.onChange && this.props.onChange(value);
+      this.props.onChange && this.props.onChange(value,this._buttonsLayout[value],this._buttonsLayout[value].width===this._itemsLayout[value].width);
     }
   }
 
