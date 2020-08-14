@@ -121,7 +121,7 @@ export default class SegmentedView extends Component {
           animated={animated}
           autoScroll={autoScroll}
           activeIndex={this.state.activeIndex}
-          onChange={(index,viewBounds,isTextEllipsize => this.onSegmentedBarChange(index,viewBounds,this.sheets[index].props.title,isTextEllipsize)}
+          onChange={(index,viewBounds,isTextEllipsize) => this.onSegmentedBarChange(index,viewBounds,this.sheets[index].props.title,isTextEllipsize)}
         >
           {this.sheets.map((item, index) => (
             <SegmentedBar.Item
