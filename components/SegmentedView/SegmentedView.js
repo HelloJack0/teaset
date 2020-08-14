@@ -84,13 +84,13 @@ export default class SegmentedView extends Component {
     return style;
   }
 
-  onSegmentedBarChange(index) {
+  onSegmentedBarChange(index,viewBounds,title,isTextEllipsize) {
     if (index == this.state.activeIndex) return;
     this.setState({activeIndex: index}, () => {
       if (this.refs.carousel) {
         this.refs.carousel.scrollToPage(index, false);
       }
-      this.props.onChange && this.props.onChange(index);
+      this.props.onChange && this.props.onChange(index,viewBounds,title,isTextEllipsize);
     });
   }
 
@@ -121,7 +121,7 @@ export default class SegmentedView extends Component {
           animated={animated}
           autoScroll={autoScroll}
           activeIndex={this.state.activeIndex}
-          onChange={index => this.onSegmentedBarChange(index)}
+          onChange={(index,viewBounds,isTextEllipsize => this.onSegmentedBarChange(index,viewBounds,this.sheets[index].props.title,isTextEllipsize)}
         >
           {this.sheets.map((item, index) => (
             <SegmentedBar.Item
