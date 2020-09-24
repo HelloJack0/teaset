@@ -42,8 +42,6 @@ export default class PopoverPickerView extends Overlay.PopoverView {
 
     let pickerStyle = {
       backgroundColor: Theme.poppColor,
-      minWidth: Theme.poppMinWidth,
-      maxWidth: Theme.poppMaxWidth,
       minHeight: Theme.poppMinHeight,
       maxHeight: Theme.poppMaxHeight,
     };
